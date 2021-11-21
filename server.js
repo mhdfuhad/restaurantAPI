@@ -4,8 +4,8 @@
  *  No part of this assignment has been copied manually or electronically from any other source
  *  (including web sites) or distributed to other students.
  *
- *  Name: Mohammad Fuhad Uddin Student ID: 135341196 Date: 18/09/21
- *  Heroku Link: _______________________________________________________________
+ *  Name: Mohammad Fuhad Uddin Student ID: 135341196 Date: 17/09/21
+ *  Heroku Link: https://web422nddrestaurant.herokuapp.com/
  *
  ********************************************************************************/
 
@@ -33,37 +33,48 @@ app.post("/api/restaurants", (req, res) => {
       res.status(201).json({ message: `Successfully added restaurant.` });
     })
     .catch((err) => {
-      res.status(500).json({ message: `Failed to add restaurant due to ${err}` });
+      res
+        .status(500)
+        .json({ message: `Failed to add restaurant due to ${err}` });
     });
 });
 
 //Return restaurant object for a specific page
 app.get("/api/restaurants", (req, res) => {
-    db.getAllRestaurants(req.query.page, req.query.perPage, req.query.borough)
-    .then((objs)=>{
-        res.status(201).json(objs);
-    }).catch((err)=>{
-        res.status(500).json({ message: `Failed to find restaurants due to ${err}` });
+  db.getAllRestaurants(req.query.page, req.query.perPage, req.query.borough)
+    .then((objs) => {
+      res.status(201).json(objs);
+    })
+    .catch((err) => {
+      res
+        .status(500)
+        .json({ message: `Failed to find restaurants due to ${err}` });
     });
 });
 
 //Return specific restaurant object through route param
 app.get("/api/restaurants/:id", (req, res) => {
-    db.getRestaurantById(req.params.id)
+  db.getRestaurantById(req.params.id)
     .then((obj) => {
-        res.status(201).json(obj);
-    }).catch((err) => {
-        res.status(500).json({ message: `Failed to find a restaurant due to ${err}` });
+      res.status(201).json(obj);
+    })
+    .catch((err) => {
+      res
+        .status(500)
+        .json({ message: `Failed to find a restaurant due to ${err}` });
     });
 });
 
 //Update specific objects through body contents and route param
 app.put("/api/restaurants/:id", (req, res) => {
-    db.updateRestaurantById(req.body, req.params.id)
+  db.updateRestaurantById(req.body, req.params.id)
     .then(() => {
-        res.status(201).json({ message: `Successfully updated restaurant.`});
-    }).catch((err) => {
-        res.status(500).json({ message: `Failed to update restaurant due to ${err}` });
+      res.status(201).json({ message: `Successfully updated restaurant.` });
+    })
+    .catch((err) => {
+      res
+        .status(500)
+        .json({ message: `Failed to update restaurant due to ${err}` });
     });
 });
 
@@ -74,14 +85,16 @@ app.delete("/api/restaurants/:id", (req, res) => {
       res.status(201).json({ message: `Successfully removed restaurant.` });
     })
     .catch((err) => {
-      res.status(500).json({ message: `Failed to remove restaurant due to ${err}` });
+      res
+        .status(500)
+        .json({ message: `Failed to remove restaurant due to ${err}` });
     });
 });
 
 //Constants
 //Bad request response
 app.use((req, res) => {
-  res.status(404).send(`Error 404! Page Not Found`);
+  res.status(404).send(`Error 404! API could not fetch any data.`);
 });
 
 // Initialize db connection and listen on port 8080.
