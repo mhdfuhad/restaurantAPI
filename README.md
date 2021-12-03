@@ -4,10 +4,10 @@
 #####  GET /
 ###### Check if API is still listening
 - curl "https://web422nddrestaurant.herokuapp.com/"
-##### GET /api/restaurants?page=**num**&perPage=**num**
+##### GET /api/restaurants?page=\<num\>&perPage=\<num\>
 ###### Get a single page of restaurant data with 10 items (page and perPage accept numeric values)
 - curl "https://web422nddrestaurant.herokuapp.com/api/restaurants?page=1&perPage=10" 
-##### GET /api/restaurants?page=**num**&perPage=**num**&borough=**string** 
+##### GET /api/restaurants?page=\<num\>&perPage=\<num\>&borough=\<string\> 
 ###### Get a single page of restaurant data with 10 items and specific borough (borough accepts a string)
 - curl "https://web422nddrestaurant.herokuapp.com/api/restaurants?page=1&perPage=10&borough=Bronx"
 ##### GET/PUT/DELETE /api/restaurants/:id
